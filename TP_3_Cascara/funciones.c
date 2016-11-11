@@ -4,6 +4,12 @@
 #include <ctype.h>
 #include "funciones.h"
 
+/**
+*@brief Inicializa en "0" todos los campos de la estructura para poder ser completadas
+*@param plista puntero a array que se le pasa como parametro
+*@param cant numero de cantidad de array de Lista
+*/
+
 void start(EMovie* plista,int CANT){
 
 int i;
@@ -14,7 +20,14 @@ for(i=0;i<CANT;i++){
         (*(plista+i)).estado=0;
 }
 
-}
+}//fin de funcion Start
+
+/**
+*@brief Busca en el array de estructura un indice libre con el estado en "0"
+*@param pLista puntero a array que se le pasa como parametro
+*@param cant numero de cantidad de array de Lista
+*@return i retorna el indice libre con el estado en "0"
+*/
 
 int espacioLibre(EMovie* plista,int CANT){
     int i,retorno=-1;
@@ -26,7 +39,7 @@ int espacioLibre(EMovie* plista,int CANT){
         }
     }
    return retorno;
-}
+}//fin de funcion espacioLibre
 /**
  *  Agrega una pelicula al archivo binario
  *  @param movie la estructura a ser agregada al archivo
@@ -98,6 +111,12 @@ int agregarPelicula(EMovie* plista, int indice){
     return retorno;
 }//Fin de funcion AgregarPelicula
 
+/**
+*@brief Muestra todas las peliculas de la Lista
+*@param plista puntero array que se le pasa como parametro
+*@param CANT cantidad de elementos del array
+*/
+
 void mostrarAll(EMovie* plista,int CANT){
  int i;
     for(i=0;i<CANT;i++){
@@ -112,10 +131,11 @@ void mostrarAll(EMovie* plista,int CANT){
             }
     }
 
-}
+}// fin de funcion MostrarAll
 /**
  *  Borra una pelicula del archivo binario
- *  @param movie la estructura a ser eliminada al archivo
+ *  @param plista elemento de la estructura a ser eliminada al archivo
+ *  @param CANT cantidad de elementos de la estructura
  *  @return retorna 1 o 0 de acuerdo a si pudo eliminar la pelicula o no
  */
 
@@ -168,8 +188,9 @@ char confirmacion;
 
 /**
  *  Modifica una pelicula del archivo binario
- *  @param movie la estructura a ser eliminada al archivo
- *  @return retorna 1 o 0 de acuerdo a si pudo eliminar la pelicula o no
+ *  @param plista puntero a elemento de la estructura a ser eliminada
+ *  @param CANT cantidad de elementos del array
+ *  @return retorna 1 o 0 de acuerdo a si pudo modificar la pelicula o no
  */
 
 int modificarPelicula(EMovie* plista,int CANT){
@@ -241,6 +262,10 @@ char linkImagen[60];
         return retorno;
 
 }//fin de funcion ModificarPelicula
+/**
+*@brief Mayuscula en la inicial de cada Nombre
+*@param nombre la cadena nombre se pasa como parametro
+*/
 
 void ordenadoMayuscula(char nombre[]){
     int i;
@@ -254,7 +279,13 @@ void ordenadoMayuscula(char nombre[]){
         }
     }
 
-}
+}//fin de funcion OrdenadoMayuscula
+
+/**
+*@brief Valida la cadena Nombre que no tenga un numero o puntuacion
+*@param nombre cadena que se le pasa como unico parametro
+*@return cadena de caracteres ya validada
+*/
 
 void validarNombre( char nombre[]){
 
@@ -268,7 +299,7 @@ for(i=0;i<strlen(nombre);i++){
         break;
     }
 }
-}
+}//fin de funcion validarNombre
 
 /**
  *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
@@ -279,6 +310,13 @@ void generarPagina(EMovie lista[], char nombre[]){
 
 
 }
+
+/**
+ *  Genera un archivo binario a partir de las peliculas cargadas
+ *  @param plista puntero que se le pasa como parametro para el archivo
+ *  @param cant cantidad de peliculas cargadas
+ *  @param nombreArchivo nombre del archivo binario a crear
+ */
 
 void archivo(EMovie* plista,int cant,char* nombreArchivo){
 
@@ -296,7 +334,14 @@ else{
         fclose(archi);
 }
 
-}
+}//fin de funcion archivo
+
+/**
+ *  Modifica/SobreEscribe archivo binario a partir de las peliculas modificadas
+ *  @param plista puntero que se le pasa como parametro para el archivo
+ *  @param cant cantidad de peliculas cargadas
+ *  @param nombreArchivo nombre del archivo binario a modificar
+ */
 
 void archivoModificado(EMovie* plista,int cant,char* nombreArchivo){
 
@@ -314,4 +359,4 @@ else{
         fclose(archi);
 }
 
-}
+}//fin de funcion modificarArchivo
