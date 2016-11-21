@@ -396,24 +396,17 @@ void* al_pop(ArrayList* pList,int index)
 ArrayList* al_subList(ArrayList* pList,int from,int to)
 {
     ArrayList* returnAux = NULL;
-    int i,bandera=0;
+    int i;
 
-    if(pList!=NULL && from>=0 && to<pList->size ){
-        if(from < to){
-
+    if(pList!=NULL && from>=0 && to<=pList->size && from < to){
             returnAux=al_newArrayList();
 
             if(returnAux!=NULL){
             for(i=from;i<=to;i++){
-                returnAux->pElements[bandera]=pList->pElements[i];
-                bandera++;
-                if(returnAux->size==returnAux->reservedSize){
-                    resizeUp(returnAux);
-                }
+                al_add(returnAux,al_get(pList,i));
             }
           }
        }
-    }
 
     return returnAux ;
 }
